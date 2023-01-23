@@ -28,6 +28,7 @@ Desafios
 - 2 - Remova um item do carrinho
 - 3 - Retorne o valor total dos produtos no carrinho
 - 4 - Refatore o código e crie novos cenários de testes se necessário
+- 5 - A branch 'resolved challenges' contém sugestões de soluções dos desafios, onde você pode comparar com as suas soluções aplicadas
 
 Os produtos usados no carrinho sâo no formato
 
