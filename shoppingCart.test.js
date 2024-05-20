@@ -3,23 +3,36 @@ const { ShoppingCart } = require("./shoppingCart");
 describe("ShoppingCart", () => {
   it("should add a new product in the list", () => {
     const shoppingCart = new ShoppingCart();
-    shoppingCart.products = [
-      { id: 1, price: 3 },
-      { id: 2, price: 5 }
-    ];
-    shoppingCart.addProduct({ id: 3, price: 2 })
-    expect(shoppingCart.products).toMatchObject([
-      { id: 1, price: 3 },
-      { id: 2, price: 5 },
-      { id: 3, price: 2 }
-    ]);
+    const product = { name: "Biscuits", price: 10 };
+
+    shoppingCart.addProduct(product);
+
+    expect(shoppingCart.products).toMatchObject([product]);
+    expect(shoppingCart.totalPrice).toBe(0);
   });
 
-  it("should return a error if product has price equal or less than 0", () => {
+  it("should calculate the total price of the products", () => {
+    const shoppingCart = new ShoppingCart();
+    shoppingCart.products = [
+      { name: "Biscuits", price: 10 },
+      { name: "Cakes", price: 20 }
+    ]
 
-  })
+    shoppingCart.calculateTotalPrice();
+    expect(shoppingCart.totalPrice).toBe(30);
+  });
 
-  it("should remove product from the list", () => {
-
+  it("should return the list of products and the total price", () => {
+    const shoppingCart = new ShoppingCart();
+    shoppingCart.addProduct({ name: "Biscuits", price: 10 });
+    shoppingCart.addProduct({ name: "Cakes", price: 20 });
+    shoppingCart.calculateTotalPrice();
+    expect(shoppingCart.getCart()).toMatchObject({
+      products: [
+        { name: "Biscuits", price: 10 },
+        { name: "Cakes", price: 20 }
+      ],
+      totalPrice: 30
+    })
   })
 });
